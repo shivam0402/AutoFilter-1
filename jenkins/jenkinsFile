@@ -2,7 +2,7 @@ pipeline{
     agent {
         docker{
             label 'Ec2Node'
-            image 'node:latest'
+            image 'node:16-alpine'
             args '-p 3000:3000'
         }
     }
