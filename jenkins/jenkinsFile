@@ -14,9 +14,7 @@ pipeline{
         }
         stage('Build'){
             steps{
-                set -x
                 npm run build
-                set +x
             }
         }
         stage('run the application'){
@@ -24,7 +22,6 @@ pipeline{
                 npm start &
                 sleep 1
                 sh 'echo $! > .pidfile'
-                set +x
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
                 kill $(cat .pidfile)
             }
