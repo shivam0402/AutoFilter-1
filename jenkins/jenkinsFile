@@ -9,21 +9,21 @@ pipeline{
     stages{
         stage('install the packages'){
             steps{
-                npm install 
+                sh 'npm install'
             }
         }
         stage('Build'){
             steps{
-                npm run build
+                sh 'npm run build'
             }
         }
         stage('run the application'){
             steps{
-                npm start &
-                sleep 1
+                sh 'npm start &'
+                sh 'sleep 1'
                 sh 'echo $! > .pidfile'
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                kill $(cat .pidfile)
+                sh 'kill $(cat .pidfile)'
             }
         }
     }
